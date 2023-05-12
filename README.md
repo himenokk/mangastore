@@ -12,3 +12,6 @@ Features I am developing:
 5. Sorting products
 6. Pagination
 etc.
+
+
+For some reason GitHub does not show all languages that I use, there is 98% of html... mind-blowing
