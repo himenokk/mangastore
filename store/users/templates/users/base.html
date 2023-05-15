@@ -17,7 +17,6 @@
 </head>
 <body>
 
-
   <header class="navbar">
     <a href="#" class="logo"><img src="/static/img/Rectangle.svg" style="width: 105px;"></a>
 
@@ -28,14 +27,24 @@
       <a href="{% url 'about' %}"><p>About us</p></a>
       <a href="{% url 'news' %}"><p>News</p></a>
       <a href="{% url 'products:index' %}"><p>Products</p></a>
+        <a href="{% url 'users:login' %}"><p>Login</p></a>
+
     </nav>
 
     <nav class="right-links">
-      <a href="#"><p>Cart</p></a>
-      <a href="#"><p>Log in</p></a>
+                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i>
+        </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
+            <a class="dropdown-item" href="#">Orders</a>
+            <a class="dropdown-item" href="#">Admin</a>
+          </div>
+        </div>
     </nav>
-
   </header>
+
 
   {% block content %} {% endblock %}
 

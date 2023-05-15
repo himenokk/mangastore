@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block css %}
-     <link rel="stylesheet" type="text/css" href="/static/login.css">
+     <link rel="stylesheet" type="text/css" href="/static/users.css">
 {% endblock %}
 
 {% block content %}
 
-  <div class="login-container" style="width: 400px">
+  <div class="login-container" style="width: 400px; justify-content: center">
   <form action="{% url 'users:login' %}" method="post">
       {% csrf_token %}
 

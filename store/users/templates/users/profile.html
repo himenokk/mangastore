@@ -1,0 +1,65 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block css %}
+     <link rel="stylesheet" type="text/css" href="/static/base.css">
+{% endblock %}
+<br><br><br>
+{% block content %}
+<div class="container">
+
+  <div class="row">
+       <div class="col-4">
+     <h3 >Hi, user</h3>
+    </div>
+    <div class="col-4">
+
+        <h2 style="color: #762424">About me</h2>
+        <hr style="color: #762424; width: 700px">
+        <div class="row">
+
+                <form action="{% url 'users:profile' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+          <label for="{{ form.username.id_for_label }}"><p style="font-size: 18px;margin-left: 6px;">Username</p></label>
+                            {{ form.username }}
+                </div>
+        <br>
+                <div class="form-group">
+         <label for="{{ form.email.id_for_label }}"><p style="font-size: 18px;margin-left: 6px;">Email</p></label>
+                    {{ form.email }}
+                </div>
+
+                <div class="form-group">
+                <label  for="{{ form.first_name.id_for_label }}"><p style="text-align: left;"><p style="font-size: 18px; margin-left: 6px;">Name</p></label>
+                {{ form.first_name }}
+            </div>
+
+                <div class="form-group">
+                <label  for="{{ form.last_name.id_for_label }}"><p style="text-align: left;"><p style="font-size: 18px;margin-left: 6px;">Last name</p></label>
+                 {{ form.last_name }}
+                </div>   <hr style="color: transparent">
+
+</form>
+            <button type="submit" style="width: 100%;
+                  background: linear-gradient(to right, #762424 0%, #000000 100%);
+                  color: white;
+                  border: none;
+                  border-radius: 15px;
+                  cursor: pointer;
+                  margin-left: 8px "><br>
+                <p style="font-size: 20px;">Update</p></button>
+              <hr style="color: transparent">
+
+
+
+            </div>
+        <hr style="color: #762424; width: 700px">
+        </div>
+
+
+  </div>
+    <br><br>
+</div>
+
+{% endblock %}
