@@ -7,7 +7,20 @@
 
 {% block content %}
 
-  <div class="login-container" style="width: 400px; justify-content: center">
+
+
+  <div class="login-container" style="width: 500px; justify-content: center">
+  {% if messages or form.non_field_errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 1px;">
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% else %}
+            {{ form.non_field_errors }}
+        {% endif %}
+        </div>
+    {% endif %}
   <form action="{% url 'users:login' %}" method="post">
       {% csrf_token %}
 

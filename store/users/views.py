@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.urls import reverse
 
 from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from products.models import Basket
 
 
 def login(request):
@@ -31,11 +32,38 @@ def registration(request):
     else:
         form = UserRegistrationForm()
     context = {'form': form}
-
     return render(request, 'users/register.html', context)
 
 
 def profile(request):
-    form = UserProfileForm()
-    context = {'title': 'Mangastore - profile', 'form': form}
+    if request.method == 'POST':
+        form = UserProfileForm(instance=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you! Your registration was successful')
+            return HttpResponseRedirect(reverse('users:profile'))
+        else:
+            print(form.errors)
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    baskets = Basket.objects.filter(user=request.user)
+    total_sum = 0
+    total_quantity = 0
+    for basket in baskets:
+        total_sum = total_sum + basket.sum()
+        total_quantity = total_quantity + basket.quantity
+
+    context = {
+        'title': 'Mangastore - profile',
+        'form': form,
+        'baskets': Basket.objects.filter(user=request.user),
+        'total_sum': total_sum,
+        'total_quantity': total_quantity,
+    }
     return render(request, 'users/profile.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))

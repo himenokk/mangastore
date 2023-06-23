@@ -10,7 +10,7 @@
 
   <div class="row">
        <div class="col-4">
-     <h3 >Hi, user</h3>
+     <h3 >Hi, {{ user.username }}</h3>
     </div>
     <div class="col-4">
 
@@ -40,7 +40,7 @@
                  {{ form.last_name }}
                 </div>   <hr style="color: transparent">
 
-</form>
+
             <button type="submit" style="width: 100%;
                   background: linear-gradient(to right, #762424 0%, #000000 100%);
                   color: white;
@@ -48,10 +48,10 @@
                   border-radius: 15px;
                   cursor: pointer;
                   margin-left: 8px "><br>
-                <p style="font-size: 20px;">Update</p></button>
+               <p style="font-size: 20px;">Update</p></button>
               <hr style="color: transparent">
 
-
+                </form>
 
             </div>
         <hr style="color: #762424; width: 700px">
@@ -60,6 +60,11 @@
 
   </div>
     <br><br>
+
+    {% include 'products/basket.html' %}
+
+<br><br><br>
+
 </div>
 
 {% endblock %}

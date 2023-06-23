@@ -28,11 +28,8 @@
       <a href="{% url 'about' %}"><p>About us</p></a>
       <a href="{% url 'news' %}"><p>News</p></a>
       <a href="{% url 'products:index' %}"><p>Products</p></a>
-        <a href="{% url 'users:login' %}"><p>Login</p></a>
-
-    </nav>
-
-    <nav class="right-links">
+        {% if user.is_authenticated %}
+        <nav class="right-links">
                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user-circle"></i>
@@ -40,9 +37,17 @@
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a>
             <a class="dropdown-item" href="#">Orders</a>
-            <a class="dropdown-item" href="#">Admin</a>
+              {% if user.is_superuser or user.is_staff%}
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
+              {% endif %}
+            <a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a>
           </div>
         </div>
+    </nav>
+
+        {% else %}
+            <a href="{% url 'users:login' %}"><p>Login</p></a>
+         {% endif %}
     </nav>
   </header>
 

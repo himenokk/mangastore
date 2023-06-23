@@ -16,13 +16,13 @@
     background-color: rgba(255, 255, 255, 0.9); /* Adjust transparency by changing the last value (0.9) */
     z-index: 1000;
   }
-  
+
   .logo{
     margin-left: 50px;
-    
-  
+
+
   }
-  
+
   .nav-links,
   .right-links {
     display: flex;
@@ -30,18 +30,18 @@
     margin-right: 60px;
     font-size: 22px;
   }
-  
+
   .nav-links a,
   .right-links a {
     text-decoration: none;
     color:  #762424;
-    
 
-    
+
+
   }
- 
 
-  
+
+
 .container{
   width: 600px;
 }
